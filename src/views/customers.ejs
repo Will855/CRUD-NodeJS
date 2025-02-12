@@ -1,0 +1,87 @@
+<%- include('partials/_header') %>
+
+    <div class="flex flex-col md:flex-row gap-6 p-4">
+        <!-- Tabla (a la izquierda en pantallas grandes) -->
+        <div class="bg-white rounded-lg shadow-md overflow-x-auto w-full md:w-2/3">
+            <table class="w-full table-auto border-collapse">
+                <!-- Encabezado de la tabla -->
+                <thead>
+                    <tr class=" text-gray-700">
+                        <th class="px-4 py-3 text-left font-semibold">No.</th>
+                        <th class="px-4 py-3 text-left font-semibold">Name</th>
+                        <th class="px-4 py-3 text-left font-semibold">Address</th>
+                        <!-- <th class="px-4 py-3 text-left font-semibold">Password</th> -->
+                        <th class="px-4 py-3 text-left font-semibold">Actions</th>
+                    </tr>
+                </thead>
+
+                <!-- Cuerpo de la tabla -->
+                <tbody class="divide-y divide-gray-200">
+                    <% if (data) { %>
+                        <% for (var i=0; i < data.length; i++) { %>
+                            <tr class="hover:bg-gray-100">
+                                <!-- Número -->
+                                <td class="px-4 py-3 text-gray-800">
+                                    <%= data[i].id %>
+                                </td>
+                                <!-- Nombre -->
+                                <td class="px-4 py-3 text-gray-800">
+                                    <%= data[i].name %>
+                                </td>
+                                <!-- Email -->
+                                <td class="px-4 py-3 text-gray-800">
+                                    <%= data[i].email %>
+                                </td>
+                                <!-- Contraseña
+                                <td class="px-4 py-3 text-gray-800">
+                                    <%= data[i].password %>
+                                </td> -->
+                                <!-- Acciones -->
+                                <td class="px-4 py-3 text-gray-800">
+                                    <button class="w-20 bg-blue-500 text-white px-3 py-1 my-1 rounded-lg hover:bg-blue-600">
+                                        <a href="/update/<%=data[i].id%>">Edit</a>
+                                    </button>
+                                    <button class="w-20 bg-red-500 text-white px-3 py-1 my-1 rounded-lg hover:bg-red-600">
+                                        <a href="/delete/<%=data[i].id%>">Delete</a>
+                                    </button>
+                                </td>
+                            </tr>
+                            <% } %>
+                                <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Formulario (a la derecha en pantallas grandes) -->
+        <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full md:w-1/3">
+            <form action="/add" method="post" class="space-y-6">
+                <!-- Input para el nombre -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <!-- Input para el email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <!-- Input para la contraseña -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+                <!-- Botón de envío -->
+                <div>
+                    <button type="submit"
+                        class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('partials/_footer') %>
