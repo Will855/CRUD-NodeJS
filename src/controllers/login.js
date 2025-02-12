@@ -2,7 +2,6 @@ const auth = {};
 const pool = require('../database/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { use } = require('../app');
 require('dotenv').config();
 
 auth.login = async (req, res) => {
